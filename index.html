@@ -33,6 +33,23 @@
     .contenido {
       display: flex;
     }
+    
+        /* Menú de navegación */
+    .menu-navegacion {
+      display: flex;
+      gap: 20px; /* espacio entre los enlaces */
+    }
+    
+    .menu-navegacion a {
+      color: white; /* color del texto */
+      text-decoration: none; /* quitamos el subrayado */
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    
+    .menu-navegacion a:hover {
+      color: #ffcccc; /* cambia de color al pasar el mouse */
+    }
 
     /* Columna izquierda debajo del título */
     .columna-izquierda {
@@ -121,8 +138,24 @@
 <body>
 
   <!-- Cabecera del sitio con el título -->
+  <!--
   <header>
     <h1 class="titulo-sitio">Cartas Hechas a Mano</h1>
+  </header>
+  -->
+
+  <header>
+    <!-- Contenedor que separa el título del menú -->
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <!-- Título a la izquierda -->
+      <h1 class="titulo-sitio">Cartas Hechas a Mano</h1>   
+      <!-- Menú a la derecha -->
+      <nav class="menu-navegacion">
+        <a href="#inicio">Inicio</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Contenedor de dos columnas: izquierda para contenido extra, derecha para todo lo demás -->
