@@ -4,24 +4,48 @@
   <meta charset="UTF-8">
   <title>Cartas Hechas a Mano</title>
   <style>
-    /* Color de fondo y estilo general */
     body {
       background-color: #800020; /* bordeaux */
       font-family: 'Arial', sans-serif;
-      color: #fff; /* texto claro para contrastar con fondo oscuro */
+      color: #fff;
       margin: 0;
       padding: 0;
     }
 
+    /* Cabecera completa del sitio */
     header {
-      text-align: center;
-      padding: 40px;
+      display: flex; /* usamos flexbox para acomodar los elementos horizontalmente */
+      align-items: flex-start; /* alineamos los elementos al inicio de la parte superior */
+      padding: 20px;
       background-color: #4b0012;
     }
 
-    h1 {
+    /* Título principal del sitio */
+    .titulo-sitio {
       margin: 0;
       font-size: 2.5em;
+      text-align: left;
+      /* Ahora está posicionado al inicio por estar dentro de un contenedor con display:flex */
+      /* Puedes cambiar text-align a 'center' o 'right' si quieres moverlo horizontalmente */
+    }
+
+    /* Contenedor de toda la estructura principal */
+    .contenido {
+      display: flex;
+    }
+
+    /* Columna izquierda debajo del título */
+    .columna-izquierda {
+      width: 20%; /* relación de aspecto como proporción áurea (aprox 1:1.6) */
+      padding: 20px;
+      background-color: #66001c;
+      min-height: 600px;
+    }
+
+    /* Columna derecha con el resto del contenido */
+    .columna-derecha {
+      width: 80%;
+      padding: 20px;
     }
 
     /* Sección de los cuadros informativos */
@@ -29,8 +53,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      align-items: flex-start;
-      margin: 40px 20px;
+      margin: 20px 0;
     }
 
     .info-box {
@@ -43,16 +66,14 @@
     }
 
     .info-box.vertical {
-      width: 20%; /* más angosto para que parezca vertical */
+      width: 20%;
       height: 340px;
     }
 
-    /* Sección de imágenes con espacio para descripción */
     .galeria {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
-      margin: 40px 20px;
     }
 
     .galeria-item {
@@ -73,10 +94,9 @@
 
     .descripcion-img {
       margin-top: 10px;
-      height: 40px; /* espacio reservado para descripción */
+      height: 40px;
     }
 
-    /* Sección de interacción con el cliente */
     .cliente-section {
       background-color: #4b0012;
       padding: 40px 20px;
@@ -100,58 +120,66 @@
 </head>
 <body>
 
+  <!-- Cabecera del sitio con el título -->
   <header>
-    <h1>Cartas Hechas a Mano</h1>
-    <p>Diseños únicos para regalar emociones.</p>
+    <h1 class="titulo-sitio">Cartas Hechas a Mano</h1>
   </header>
 
-  <!-- Sección de cuadros informativos -->
-  <section class="info-section">
-    <div class="info-box vertical">
-      <!-- Este cuadro es vertical -->
-      <p>Este cuadro será para información vertical</p>
-    </div>
-    <div class="info-box">
-      <!-- Cuadro horizontal 1 -->
-      <p>Este cuadro horizontal se puede usar para mostrar promociones.</p>
-    </div>
-    <div class="info-box">
-      <!-- Cuadro horizontal 2 -->
-      <p>Aquí podrías contar la historia detrás de las cartas.</p>
-    </div>
-  </section>
+  <!-- Contenedor de dos columnas: izquierda para contenido extra, derecha para todo lo demás -->
+  <div class="contenido">
 
-  <!-- Sección con 3 imágenes y descripciones -->
-  <section class="galeria">
-    <div class="galeria-item">
-      <img src="Carta1.jpeg" alt="Carta 1">
-      <div class="descripcion-img">Descripción aquí</div>
+    <!-- Columna izquierda: Aquí se puede agregar información extra debajo del título -->
+    <div class="columna-izquierda">
+      <!-- Por ahora está vacío, pero puedes poner enlaces, redes sociales, menú, etc -->
     </div>
-    <div class="galeria-item">
-      <img src="Carta2.jpeg" alt="Carta 2">
-      <div class="descripcion-img">Descripción aquí</div>
-    </div>
-    <div class="galeria-item">
-      <img src="Carta3.jpeg" alt="Carta 3">
-      <div class="descripcion-img">Descripción aquí</div>
-    </div>
-  </section>
 
-  <!-- Sección para cliente -->
-  <section class="cliente-section">
-    <div class="cliente-box">
-      <p><strong>Enviar tu diseño</strong></p>
-      <!-- Aquí más adelante pondremos un formulario para subir imagen -->
+    <!-- Columna derecha: contiene el contenido principal -->
+    <div class="columna-derecha">
+      
+      <!-- Sección de cuadros informativos -->
+      <section class="info-section">
+        <div class="info-box vertical">
+          <p>Cuadro vertical de ejemplo.</p>
+        </div>
+        <div class="info-box">
+          <p>Promociones o texto decorativo aquí.</p>
+        </div>
+        <div class="info-box">
+          <p>Historia o explicación del proyecto.</p>
+        </div>
+      </section>
+
+      <!-- Galería de imágenes -->
+      <section class="galeria">
+        <div class="galeria-item">
+          <img src="carta1.jpg" alt="Carta 1">
+          <div class="descripcion-img">Descripción aquí</div>
+        </div>
+        <div class="galeria-item">
+          <img src="carta2.jpg" alt="Carta 2">
+          <div class="descripcion-img">Descripción aquí</div>
+        </div>
+        <div class="galeria-item">
+          <img src="carta3.jpg" alt="Carta 3">
+          <div class="descripcion-img">Descripción aquí</div>
+        </div>
+      </section>
+
+      <!-- Sección para cliente -->
+      <section class="cliente-section">
+        <div class="cliente-box">
+          <p><strong>Enviar tu diseño</strong></p>
+        </div>
+        <div class="cliente-box">
+          <p><strong>Realizar comentarios</strong></p>
+        </div>
+        <div class="cliente-box">
+          <p><strong>Realizar un pedido</strong></p>
+        </div>
+      </section>
+
     </div>
-    <div class="cliente-box">
-      <p><strong>Realizar comentarios</strong></p>
-      <!-- Aquí se agregará un área de texto -->
-    </div>
-    <div class="cliente-box">
-      <p><strong>Realizar un pedido</strong></p>
-      <!-- Aquí se colocará un formulario para hacer pedidos -->
-    </div>
-  </section>
+  </div>
 
 </body>
 </html>
