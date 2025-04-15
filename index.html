@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartas Hechas a Mano</title>
+  <style>
+    /* Color de fondo y estilo general */
+    body {
+      background-color: #800020; /* bordeaux */
+      font-family: 'Arial', sans-serif;
+      color: #fff; /* texto claro para contrastar con fondo oscuro */
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px;
+      background-color: #4b0012;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    /* Sección de los cuadros informativos */
+    .info-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 40px 20px;
+    }
+
+    .info-box {
+      background-color: #a93242;
+      border-radius: 20px;
+      padding: 20px;
+      width: 30%;
+      min-height: 200px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .info-box.vertical {
+      width: 20%; /* más angosto para que parezca vertical */
+      height: 340px;
+    }
+
+    /* Sección de imágenes con espacio para descripción */
+    .galeria {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 40px 20px;
+    }
+
+    .galeria-item {
+      background-color: #fff;
+      border-radius: 12px;
+      width: 200px;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+      color: #333;
+    }
+
+    .galeria-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .descripcion-img {
+      margin-top: 10px;
+      height: 40px; /* espacio reservado para descripción */
+    }
+
+    /* Sección de interacción con el cliente */
+    .cliente-section {
+      background-color: #4b0012;
+      padding: 40px 20px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .cliente-box {
+      background-color: #a93242;
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: 28%;
+      margin: 10px;
+      min-height: 150px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Cartas Hechas a Mano</h1>
+    <p>Diseños únicos para regalar emociones.</p>
+  </header>
+
+  <!-- Sección de cuadros informativos -->
+  <section class="info-section">
+    <div class="info-box vertical">
+      <!-- Este cuadro es vertical -->
+      <p>Este cuadro será para información vertical</p>
+    </div>
+    <div class="info-box">
+      <!-- Cuadro horizontal 1 -->
+      <p>Este cuadro horizontal se puede usar para mostrar promociones.</p>
+    </div>
+    <div class="info-box">
+      <!-- Cuadro horizontal 2 -->
+      <p>Aquí podrías contar la historia detrás de las cartas.</p>
+    </div>
+  </section>
+
+  <!-- Sección con 3 imágenes y descripciones -->
+  <section class="galeria">
+    <div class="galeria-item">
+      <img src="https://via.placeholder.com/200x150.png?text=Carta+1" alt="Carta 1">
+      <div class="descripcion-img">Descripción aquí</div>
+    </div>
+    <div class="galeria-item">
+      <img src="https://via.placeholder.com/200x150.png?text=Carta+2" alt="Carta 2">
+      <div class="descripcion-img">Descripción aquí</div>
+    </div>
+    <div class="galeria-item">
+      <img src="https://via.placeholder.com/200x150.png?text=Carta+3" alt="Carta 3">
+      <div class="descripcion-img">Descripción aquí</div>
+    </div>
+  </section>
+
+  <!-- Sección para cliente -->
+  <section class="cliente-section">
+    <div class="cliente-box">
+      <p><strong>Enviar tu diseño</strong></p>
+      <!-- Aquí más adelante pondremos un formulario para subir imagen -->
+    </div>
+    <div class="cliente-box">
+      <p><strong>Realizar comentarios</strong></p>
+      <!-- Aquí se agregará un área de texto -->
+    </div>
+    <div class="cliente-box">
+      <p><strong>Realizar un pedido</strong></p>
+      <!-- Aquí se colocará un formulario para hacer pedidos -->
+    </div>
+  </section>
+
+</body>
+</html>
