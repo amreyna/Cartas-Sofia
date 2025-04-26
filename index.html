@@ -104,10 +104,10 @@
     }
 
     .galeria-item img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
+     flex: 0 0 calc(25% - 20px); /* 4 por fila */
+  box-sizing: border-box;
+}
+    
 
     .descripcion-img {
       margin-top: 10px;
@@ -226,8 +226,9 @@
           <img src="Carta1.jpeg" alt="Carta 3">
           <div class="descripcion-img">Descripción aquí</div>
         </div>
+        
         <div class="galeria-item">
-          <img src="Carta1.jpeg" alt="Carta 3"br.>
+          <img src="Carta1.jpeg" alt="Carta 3">
           <div class="descripcion-img">Descripción aquí</div>
         </div>
       </section>
