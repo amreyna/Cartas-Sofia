@@ -203,9 +203,26 @@
         <div class="cliente-box">
           <p><strong>Enviar tu diseño</strong></p>
         </div>
-        <div class="cliente-box">
-          <p><strong>Realizar comentarios</strong></p>
-        </div>
+<div class="cliente-box">
+ <p><strong>Realizar comentarios</strong></p>
+ 
+ <!-- Formulario para enviar comentarios -->
+ <form action="https://formsubmit.co/mitsuhamiyabami@gmail.com" method="POST">
+ 
+   <!-- Seguridad contra robots -->
+   <input type="hidden" name="_captcha" value="false">
+ 
+   <!-- Redirige al terminar -->
+   <input type="hidden" name="_next" value="https://amreyna.github.io/Cartas-Sofia/gracias.html">
+ 
+   <!-- Área de texto para el comentario -->
+   <textarea name="comentario" placeholder="Escribe tu comentario aquí..." rows="5" style="width: 100%; border-radius: 10px;"></textarea>
+   <br><br>
+ 
+   <!-- Botón para enviar -->
+   <input type="submit" value="Enviar" style="padding: 10px 20px; border: none; border-radius: 5px; background-color: #ffcccc; cursor: pointer;">
+ </form>
+</div>
         <div class="cliente-box">
           <p><strong>Realizar un pedido</strong></p>
         </div>
