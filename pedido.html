@@ -144,26 +144,7 @@
     <button type="submit">Enviar Pedido</button>
 
   </form>
-  <script>
-    // JavaScript para calcular el total
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const totalDisplay = document.getElementById('total');
 
-    function actualizarTotal() {
-      let total = 0;
-      checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-          total += parseFloat(checkbox.getAttribute('data-precio'));
-        }
-      });
-      totalDisplay.textContent = Total: $${total};
-    }
-
-    // Escuchar cambios en los checkboxes
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', actualizarTotal);
-    });
-  </script>
 </body>
 </html>
 
