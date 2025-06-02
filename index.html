@@ -167,6 +167,22 @@
    transform: translateY(0); /* vuelve a su lugar normal */
  }
 }
+    .video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 20px; /* o lo que prefieras */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
   </style>
 </head>
 <body>
@@ -191,12 +207,12 @@
 
     <!-- Columna izquierda: Aquí se puede agregar información extra debajo del título -->
     <div class="columna-izquierda">
-      <div class="info-box">
+      <div class="video-wrapper">
         <p> Videos de manualides <3 </p>
-        <<iframe width="560" height="315" 
-    src="https://www.youtube.com/embed/lRaX48zf8CQ" 
-    frameborder="0" allowfullscreen>
-</iframe>
+       <iframe src="https://www.youtube.com/embed/lRaX48zf8CQ"
+          frameborder="0" allowfullscreen>
+  </iframe>
+    </div>
     </div>
 
     <!-- Columna derecha: contiene el contenido principal -->
