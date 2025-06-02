@@ -121,6 +121,16 @@
       padding: 10px;
       border-radius: 10px;
     }
+
+    /* Animación de aparición/desaparición */
+    #frase-motivacional {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    #frase-motivacional.visible {
+      opacity: 1;
+    }
     
   </style>
 </head>
@@ -205,34 +215,6 @@
 
   
 <script>
-// Función para calcular el total
-function actualizarTotal() {
-  let total = 0;
-  const checkboxes = document.querySelectorAll('.carta-item input[type="checkbox"]');
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      // Extraer número del value: "Carta 1 - $100"
-      const texto = checkbox.value;
-      const precio = parseInt(texto.match(/\$(\d+)/)[1]); // Extrae el número
-      total += precio;
-    }
-  });
-
-  // Mostrar el total
-  document.getElementById('total-pedido').textContent = `Total: $${total}`;
-}
-
-// Ejecutar cuando se marque o desmarque un checkbox
-const checkboxes = document.querySelectorAll('.carta-item input[type="checkbox"]');
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('change', actualizarTotal);
-});
-
-// Ejecutar al cargar la página por si ya hay algo marcado
-actualizarTotal();
-</script>
-
-<script>
 function actualizarTotalYFrase() {
   let total = 0;
   let cantidad = 0;
@@ -255,11 +237,8 @@ function actualizarTotalYFrase() {
     "💖 Dos es mejor que una 💖",
     "¡Estás armando algo muy especial!",
     "¡Esto va a tocar corazones!",
-    "¡Qué gran sorpresa estás planeando!",
     "❤️ Una carta más y será perfecto",
-    "¡Amor en cada palabra que eliges!",
-    "Estás regalando emociones 💫",
-    "¡Tus elecciones son mágicas!"
+    "Estás regalando emociones 💫 y ¡tus elecciones son mágicas!"
   ];
 
   // Escoger frase según cantidad
@@ -272,7 +251,16 @@ function actualizarTotalYFrase() {
     frase = "¡Tu pedido será inolvidable! ✨";
   }
 
-  document.getElementById('frase-motivacional').textContent = frase;
+  const fraseDiv = document.getElementById('frase-motivacional');
+  fraseDiv.textContent = frase;
+
+  // Mostrar con efecto
+  fraseDiv.classList.add('visible');
+
+  // Quitar después de 2 segundos
+  setTimeout(() => {
+    fraseDiv.classList.remove('visible');
+  }, 2000);
 }
 
 // Activar en cada cambio
