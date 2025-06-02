@@ -156,13 +156,14 @@
 /* Contenedor principal */
 .contenido {
   display: flex;
+  gap: 20px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .columna-izquierda {
-  width: 400px;
-  flex-shrink: 0;/* ❗️25% fijo */
+  flex-basis: 35%;
+  max-width: 400px;
   background-color: #66001c;
   padding: 20px;
   box-sizing: border-box;
@@ -170,7 +171,8 @@
 }
 
 .columna-derecha {
-flex-grow: 1;
+  flex-grow: 1;
+  flex-basis: 65%;
   background-color: #aa0044;
   color: white;
   padding: 20px;
