@@ -155,20 +155,21 @@
 /* Contenedor principal */
 .contenido {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap;         /* ❗️Evita que se acomoden una debajo de otra */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .columna-izquierda {
-  width: 25%; /* Puedes usar 20% si así estaba antes */
-  padding: 20px;
+  flex: 0 0 25%;              /* ❗️25% fijo */
   background-color: #66001c;
-  min-height: 600px;
+  padding: 20px;
   box-sizing: border-box;
   color: white;
 }
 
 .columna-derecha {
-  width: 75%;
+  flex: 1;                    /* ❗️Toma el resto del espacio */
   padding: 20px;
   box-sizing: border-box;
 }
