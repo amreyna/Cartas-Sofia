@@ -50,7 +50,11 @@
     .menu-navegacion a:hover {
       color: #ffcccc; /* cambia de color al pasar el mouse */
     }
-
+    
+    .contenido {
+  display: flex;
+  flex-wrap: wrap;
+}
     /* Columna izquierda debajo del título */
     .columna-izquierda {
       width: 20%; /* relación de aspecto como proporción áurea (aprox 1:1.6) */
@@ -167,7 +171,37 @@
    transform: translateY(0); /* vuelve a su lugar normal */
  }
 }
-    
+    .video-card {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: #000;
+}
+
+/* Contenedor responsivo para el iframe */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Relación 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Descripción debajo del video */
+.video-descripcion {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+   } 
     
   </style>
 </head>
@@ -195,26 +229,33 @@
     <div class="columna-izquierda">
       <div class="info-box">
         <p> Videos de manualides <3 </p>
-        
+
+        <div class="video-card">
       <div class="video-wrapper">
        <iframe src="https://www.youtube.com/embed/lRaX48zf8CQ"
           frameborder="0" allowfullscreen>
   </iframe>
       </div>
         <p> Aprende a hacer este tipo de carta Basica 💗</p>
-        
+        </div>
+
+      <div class="video-card">
         <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/J8YDEjcokYw"
           frameborder="0" allowfullscreen>
   </iframe>
         </div>
         <p>Tutorial carta victoriana 🖼️</p>
+      </div>
+      
+      <div class="video-card">
         <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/VNYcqvbnm9s"
           frameborder="0" allowfullscreen>
   </iframe>
     </div>
         <p>Manualidades San Valentin 📮</p>
+      </div>
       </div>
     </div>
 
