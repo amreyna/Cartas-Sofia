@@ -55,9 +55,6 @@
     .menu-navegacion a:hover {
       color: #ffcccc; /* cambia de color al pasar el mouse */
     }
-    
-    
-    
 
     /* Sección de los cuadros informativos */
     .info-section {
@@ -107,6 +104,7 @@
     .galeria-item img:hover {
       transform: scale(1.5);
       z-index:10;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
     }
     
     .descripcion-img {
@@ -249,6 +247,29 @@
   height: 200px;
   border: none;
 }
+ 
+    input[type="submit"],
+    button {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover,
+    button:hover {
+      transform: scale(1.05);
+      background-color: #e0558f; /* color rosado fuerte al pasar el mouse */
+    }
+
+    input[value="Realizar pedidos"] {
+      animation: latido 1.5s infinite;
+    }
+    
+    @keyframes latido {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {transform: scale(1.05);
+          }
+    }
     
   </style>
 </head>
