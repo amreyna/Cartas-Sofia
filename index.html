@@ -167,6 +167,23 @@
    transform: translateY(0); /* vuelve a su lugar normal */
  }
 }
+    .video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%; /* IMPORTANTE para no romper el layout */
+  padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
     
   </style>
 </head>
