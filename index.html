@@ -30,9 +30,6 @@
     }
 
     /* Contenedor de toda la estructura principal */
-    .contenido {
-      display: flex;
-    }
     
         /* Menú de navegación */
     .menu-navegacion {
@@ -51,23 +48,8 @@
       color: #ffcccc; /* cambia de color al pasar el mouse */
     }
     
-    .contenido {
-  display: flex;
-  flex-wrap: wrap;
-}
-    /* Columna izquierda debajo del título */
-    .columna-izquierda {
-      width: 20%; /* relación de aspecto como proporción áurea (aprox 1:1.6) */
-      padding: 20px;
-      background-color: #66001c;
-      min-height: 600px;
-    }
-
-    /* Columna derecha con el resto del contenido */
-    .columna-derecha {
-      width: 80%;
-      padding: 20px;
-    }
+    
+    
 
     /* Sección de los cuadros informativos */
     .info-section {
@@ -170,8 +152,31 @@
    opacity: 1;
    transform: translateY(0); /* vuelve a su lugar normal */
  }
+/* Contenedor principal */
+.contenido {
+  display: flex;
+  flex-wrap: wrap;
 }
-    .video-card {
+
+/* Columna izquierda */
+.columna-izquierda {
+  width: 30%;
+  min-width: 250px;
+  padding: 20px;
+  background-color: #66001c;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Columna derecha */
+.columna-derecha {
+  width: 70%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Tarjeta de video */
+.video-card {
   background-color: #fff;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -179,7 +184,7 @@
   color: #000;
 }
 
-/* Contenedor responsivo para el iframe */
+/* Contenedor responsivo para el video */
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -196,12 +201,12 @@
   border: none;
 }
 
-/* Descripción debajo del video */
+/* Descripción del video */
 .video-descripcion {
   margin-top: 10px;
   font-size: 14px;
   text-align: center;
-   } 
+}
     
   </style>
 </head>
