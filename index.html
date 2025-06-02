@@ -155,33 +155,35 @@
 /* Contenedor principal */
 .contenido {
   display: flex;
-  flex-wrap: wrap;
 }
 
-/* Columna izquierda */
 .columna-izquierda {
-  width: 30%;
-  min-width: 250px;
+  width: 20%; /* Puedes usar 20% si así estaba antes */
   padding: 20px;
   background-color: #66001c;
-  color: white;
+  min-height: 600px;
   box-sizing: border-box;
+  color: white;
 }
 
-/* Columna derecha */
 .columna-derecha {
-  width: 70%;
+  width: 80%;
   padding: 20px;
   box-sizing: border-box;
 }
-
 /* Tarjeta de video */
 .video-card {
-  background-color: #fff;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  background-color: white;
   padding: 10px;
-  color: #000;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.video-card iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 6px;
 }
 
 /* Contenedor responsivo para el video */
