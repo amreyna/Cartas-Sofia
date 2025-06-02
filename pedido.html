@@ -113,7 +113,13 @@
     .carta-item input[type="checkbox"] {
       display: block;
       margin: 10px auto;
-      transform: scale(1.225); /* agranda un poco el checkbox */
+      transform: scale(1.2); /* agranda un poco el checkbox */
+    }
+
+    #frase-motivacional {
+      transition: all 0.3s ease;
+      padding: 10px;
+      border-radius: 10px;
     }
     
   </style>
@@ -142,6 +148,10 @@
     <h2>Elige tus cartas</h2>
 
     <div class="cartas">
+      <div id="frase-motivacional" style="text-align: center; font-size: 18px; font-weight: bold; margin-top: 30px; color: #d6336c;">
+        💌 Elige una carta para comenzar 💌
+      </div>
+      
       <!-- Carta 1 -->
       <div class="carta-item">
         <img src="sofi1.jpeg" alt="Carta 1">
@@ -220,6 +230,57 @@ checkboxes.forEach((checkbox) => {
 
 // Ejecutar al cargar la página por si ya hay algo marcado
 actualizarTotal();
+</script>
+
+<script>
+function actualizarTotalYFrase() {
+  let total = 0;
+  let cantidad = 0;
+  const checkboxes = document.querySelectorAll('.carta-item input[type="checkbox"]');
+
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      cantidad++;
+      const precio = parseInt(checkbox.value.match(/\$(\d+)/)[1]);
+      total += precio;
+    }
+  });
+
+  document.getElementById('total-pedido').textContent = `Total: $${total}`;
+
+  // Frases motivadoras según cantidad
+  const frases = [
+    "💌 Elige una carta para comenzar 💌",
+    "¡Bien! Le encantará esta carta 😊",
+    "💖 Dos es mejor que una 💖",
+    "¡Estás armando algo muy especial!",
+    "¡Esto va a tocar corazones!",
+    "¡Qué gran sorpresa estás planeando!",
+    "❤️ Una carta más y será perfecto",
+    "¡Amor en cada palabra que eliges!",
+    "Estás regalando emociones 💫",
+    "¡Tus elecciones son mágicas!"
+  ];
+
+  // Escoger frase según cantidad
+  let frase;
+  if (cantidad === 0) {
+    frase = frases[0];
+  } else if (cantidad < frases.length) {
+    frase = frases[cantidad];
+  } else {
+    frase = "¡Tu pedido será inolvidable! ✨";
+  }
+
+  document.getElementById('frase-motivacional').textContent = frase;
+}
+
+// Activar en cada cambio
+const checks = document.querySelectorAll('.carta-item input[type="checkbox"]');
+checks.forEach((chk) => chk.addEventListener('change', actualizarTotalYFrase));
+
+// Llamar al cargar la página por si hay algo marcado
+actualizarTotalYFrase();
 </script>
   
 </body>
