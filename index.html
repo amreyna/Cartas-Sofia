@@ -155,15 +155,13 @@
 }
 /* Contenedor principal */
 .contenido {
-  display: flex !important;
+  display: flex;
   flex-wrap: nowrap;         /* ❗️Evita que se acomoden una debajo de otra */
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 .columna-izquierda {
-  flex: 20%;              /* ❗️25% fijo */
+  flex: 0 0 25%;              /* ❗️25% fijo */
   background-color: #66001c;
   padding: 20px;
   box-sizing: border-box;
@@ -171,7 +169,7 @@
 }
 
 .columna-derecha {
-  width: 80%;                   /* ❗️Toma el resto del espacio */
+  width: 0 0 75%;                   /* ❗️Toma el resto del espacio */
   padding: 20px;
   box-sizing: border-box;
 }
