@@ -240,6 +240,8 @@ document.querySelector("form").addEventListener("submit", function () {
   });
 
   // Guardar los datos en localStorage para mostrarlos en grax.html
+  localStorage.setItem("nombre", nombre);
+  localStorage.setItem("destinatario", para);
   localStorage.setItem("cartas", JSON.stringify(cartasSeleccionadas));
   localStorage.setItem("total", `$${total}`);
 });
