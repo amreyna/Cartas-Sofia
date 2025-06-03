@@ -528,5 +528,26 @@ perfecto para quien ama la belleza cruda de <br>
   transform: scale(1.05);
 }
 </style>
+<script>
+  const formulario = document.getElementById("formulario");
+  const imagenInput = document.getElementById("imagen");
+
+
+      // Guardar los datos en localStorage para usarlos en diseñoper.html
+      localStorage.setItem("nombre", formulario.nombre.value);
+      localStorage.setItem("correo", formulario.correo.value);
+
+      // Guardar la imagen como base64
+      const lector = new FileReader();
+      lector.onload = function () {
+        localStorage.setItem("imagen", lector.result);
+        formulario.submit();
+      };
+      lector.readAsDataURL(archivo);
+
+      e.preventDefault(); // prevenir envío inmediato hasta que la imagen se lea
+    }
+  });
+</script>
 </body>
 </html>
