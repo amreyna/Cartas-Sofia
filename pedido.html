@@ -213,7 +213,54 @@
     <a href="index.html" class="boton-regresar">⬅️ Regresar al inicio</a>
 
   </form>
+<!-- Ticket personalizado -->
+<div id="ticket-container" style="display: none; margin-top: 40px;">
+  <div id="ticket" style="
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    background: #fff0f5;
+    border: 3px dashed #d6336c;
+    border-radius: 20px;
+    font-family: 'Georgia', serif;
+    color: #4a0033;
+    position: relative;
+    box-shadow: 0 0 25px rgba(214, 51, 108, 0.2);
+    background-image: url('https://www.transparenttextures.com/patterns/pink-paper.png');
+  ">
+    <div style="text-align: center;">
+      <h2 style="font-size: 28px; margin-bottom: 10px;">💌 Ticket de Pedido</h2>
+      <p style="font-style: italic; color: #a83a64;">"Gracias por compartir amor con tus palabras..."</p>
+    </div>
 
+    <hr style="border: none; border-top: 1px dashed #d6336c; margin: 20px 0;">
+
+    <p><strong>👤 Nombre:</strong> <span id="t-nombre"></span></p>
+    <p><strong>📧 Correo:</strong> <span id="t-correo"></span></p>
+    <p><strong>🎁 Para:</strong> <span id="t-para"></span></p>
+    <p><strong>💌 Cartas Elegidas (<span id="t-cantidad"></span>):</strong></p>
+    
+    <ul id="t-cartas" style="padding-left: 20px; list-style-type: '💖 '; line-height: 1.6;"></ul>
+
+    <p style="text-align: right; font-size: 18px; font-weight: bold; margin-top: 20px;">Total a pagar: <span id="t-total"></span></p>
+
+    <hr style="border: none; border-top: 1px dashed #d6336c; margin: 20px 20px 0 20px;">
+    <p style="text-align: center; font-size: 14px; margin-top: 15px;">✨ Este ticket es válido como comprobante de amor ✨</p>
+  </div>
+
+  <button onclick="window.print()" style="
+    margin: 30px auto;
+    display: block;
+    background-color: #d6336c;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  ">🖨️ Imprimir o Guardar como PDF</button>
+</div>
   
 <script>
 function actualizarTotalYFrase() {
@@ -265,6 +312,48 @@ checks.forEach((chk) => chk.addEventListener('change', actualizarTotalYFrase));
 
 // Llamar al cargar la página por si hay algo marcado
 actualizarTotalYFrase();
+
+// Función para generar el ticket
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault(); // Evita envío real del formulario
+
+  const nombre = document.querySelector('input[name="Nombre del comprador"]').value;
+  const correo = document.querySelector('input[name="Correo del comprador"]').value;
+  const para = document.querySelector('input[name="Destinatario de la carta"]').value;
+
+  const checkboxes = document.querySelectorAll('.carta-item input[type="checkbox"]');
+  const listaCartas = document.getElementById("t-cartas");
+  listaCartas.innerHTML = ""; // Limpiar por si se genera de nuevo
+
+  let total = 0;
+  let cantidad = 0;
+
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      cantidad++;
+      const precio = parseInt(checkbox.value.match(/\$(\d+)/)[1]);
+      total += precio;
+
+      // Crear ítem de lista
+      const li = document.createElement("li");
+      li.textContent = checkbox.value;
+      listaCartas.appendChild(li);
+    }
+  });
+
+  // Rellenar los datos en el ticket
+  document.getElementById("t-nombre").textContent = nombre;
+  document.getElementById("t-correo").textContent = correo;
+  document.getElementById("t-para").textContent = para;
+  document.getElementById("t-total").textContent = `$${total}`;
+  document.getElementById("t-cantidad").textContent = cantidad;
+
+  // Mostrar el ticket
+  document.getElementById("ticket-container").style.display = "block";
+
+  // Opcional: ocultar el formulario para que solo se vea el ticket
+  // document.querySelector("form").style.display = "none";
+});
 </script>
   
 </body>
