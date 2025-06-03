@@ -315,8 +315,9 @@ actualizarTotalYFrase();
 
 
 document.querySelector("form").addEventListener("submit", function (e) {
-  // 1. NO bloqueamos el envío
-  // 2. Mostramos el ticket
+  e.preventDefault(); // Evita envío inmediato
+
+  const form = this;
 
   const nombre = document.querySelector('input[name="Nombre del comprador"]').value;
   const correo = document.querySelector('input[name="Correo del comprador"]').value;
@@ -349,7 +350,10 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
   document.getElementById("ticket-container").style.display = "block";
 
-  // El formulario se sigue enviando normalmente después de mostrar el ticket
+  // Espera 3 segundos para mostrar el ticket y luego enviar el formulario
+  setTimeout(() => {
+    form.submit(); // Ahora sí se envía el formulario
+  }, 3000);
 });
 
 </script>
