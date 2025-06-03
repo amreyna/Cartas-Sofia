@@ -314,10 +314,9 @@ checks.forEach((chk) => chk.addEventListener('change', actualizarTotalYFrase));
 actualizarTotalYFrase();
 
 
+// Función para generar el ticket
 document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault(); // Evita envío inmediato
-
-  const form = this;
+  e.preventDefault(); // Evita envío real del formulario
 
   const nombre = document.querySelector('input[name="Nombre del comprador"]').value;
   const correo = document.querySelector('input[name="Correo del comprador"]').value;
@@ -325,7 +324,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
   const checkboxes = document.querySelectorAll('.carta-item input[type="checkbox"]');
   const listaCartas = document.getElementById("t-cartas");
-  listaCartas.innerHTML = "";
+  listaCartas.innerHTML = ""; // Limpiar por si se genera de nuevo
 
   let total = 0;
   let cantidad = 0;
@@ -336,24 +335,25 @@ document.querySelector("form").addEventListener("submit", function (e) {
       const precio = parseInt(checkbox.value.match(/\$(\d+)/)[1]);
       total += precio;
 
+      // Crear ítem de lista
       const li = document.createElement("li");
       li.textContent = checkbox.value;
       listaCartas.appendChild(li);
     }
   });
 
+  // Rellenar los datos en el ticket
   document.getElementById("t-nombre").textContent = nombre;
   document.getElementById("t-correo").textContent = correo;
   document.getElementById("t-para").textContent = para;
   document.getElementById("t-total").textContent = `$${total}`;
   document.getElementById("t-cantidad").textContent = cantidad;
 
+  // Mostrar el ticket
   document.getElementById("ticket-container").style.display = "block";
 
-  // Espera 3 segundos para mostrar el ticket y luego enviar el formulario
-  setTimeout(() => {
-    form.submit(); // Ahora sí se envía el formulario
-  }, 3000);
+  // Opcional: ocultar el formulario para que solo se vea el ticket
+  // document.querySelector("form").style.display = "none";
 });
 
 </script>
