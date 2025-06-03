@@ -221,8 +221,56 @@
   </form>
   
 <script>
-// Cuando se envía el formulario
-document.querySelector("form").addEventListener("submit", function () {
+// Función que actualiza el total y muestra frase motivacional
+function actualizarTotalYFrase() {
+  let total = 0;
+  let cantidad = 0;
+  const checkboxes = document.querySelectorAll('.carta-item input[type="checkbox"]');
+
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      cantidad++;
+      const precio = parseInt(checkbox.value.match(/\$(\d+)/)[1]);
+      total += precio;
+    }
+  });
+
+  document.getElementById('total-pedido').textContent = `Total: $${total}`;
+
+  // Frases motivadoras según cantidad
+  const frases = [
+    "💌 Elige una carta para comenzar 💌",
+    "¡Bien! Le encantará esta carta 😊",
+    "💖 Dos es mejor que una 💖",
+    "¡Estás armando algo muy especial!",
+    "¡Esto va a tocar corazones!",
+    "❤️ Una carta más y será perfecto",
+    "Estás regalando emociones 💫 y ¡tus elecciones son mágicas!"
+  ];
+
+  let frase;
+  if (cantidad === 0) {
+    frase = frases[0];
+  } else if (cantidad < frases.length) {
+    frase = frases[cantidad];
+  } else {
+    frase = "¡Tu pedido será inolvidable! ✨";
+  }
+
+  const fraseDiv = document.getElementById("frase-motivacional");
+  fraseDiv.textContent = frase;
+  fraseDiv.classList.add("visible");
+}
+
+// Escuchar cambios en los checkboxes
+const checks = document.querySelectorAll('.carta-item input[type="checkbox"]');
+checks.forEach((chk) => chk.addEventListener('change', actualizarTotalYFrase));
+
+// Ejecutar al cargar por si hay algo marcado
+actualizarTotalYFrase();
+
+// Al enviar el formulario
+document.querySelector("form").addEventListener("submit", function (e) {
   const nombre = document.querySelector('input[name="Nombre del comprador"]').value;
   const correo = document.querySelector('input[name="Correo del comprador"]').value;
   const para = document.querySelector('input[name="Destinatario de la carta"]').value;
@@ -239,16 +287,24 @@ document.querySelector("form").addEventListener("submit", function () {
     }
   });
 
-  // Guardar los datos en localStorage para mostrarlos en grax.html
+  // 🛑 Verifica si no hay cartas seleccionadas
+  if (cartasSeleccionadas.length === 0) {
+    e.preventDefault(); // Detiene el envío
+    alert("⚠️ Debes seleccionar al menos una carta para enviar tu pedido.");
+    return;
+  }
+
+  // Guardar en localStorage
   localStorage.setItem("nombre", nombre);
   localStorage.setItem("destinatario", para);
   localStorage.setItem("cartas", JSON.stringify(cartasSeleccionadas));
   localStorage.setItem("total", `$${total}`);
+
+  // ✅ Mostrar mensaje de redirección
+  document.getElementById("mensaje-envio").style.display = "block";
 });
-// Mostrar mensaje antes de enviar
-document.getElementById("mensaje-envio").style.display = "block";
-  
 </script>
+
   
   
 </body>
