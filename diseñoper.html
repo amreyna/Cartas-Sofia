@@ -2,157 +2,67 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Diseño de Carta Personalizada</title>
+  <title>Ticket de Diseño Personalizado</title>
   <style>
     body {
+      background-color: #fefefe;
       font-family: 'Arial', sans-serif;
-      background-color: #fff0f5;
       padding: 20px;
-    }
-
-    form {
-      max-width: 700px;
-      margin: auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
       text-align: center;
-      color: #d6336c;
     }
 
-    label {
-      display: block;
-      margin-top: 20px;
-      font-weight: bold;
+    .ticket {
+      background-color: #fff0f5;
+      border: 2px dashed #ff69b4;
+      padding: 30px;
+      max-width: 500px;
+      margin: 50px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
+    .ticket h2 {
+      margin-top: 0;
+      color: #d63384;
+    }
+
+    .ticket img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
       border-radius: 10px;
       border: 1px solid #ccc;
     }
 
-    button {
-      display: block;
-      margin: 30px auto 0 auto;
-      background-color: #d6336c;
-      color: white;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #a72550;
-    }
-
-    #ticket-container {
-      display: none;
-      margin-top: 40px;
-    }
-
-    #ticket {
-      max-width: 600px;
-      margin: auto;
-      padding: 30px;
-      background: #fff0f5;
-      border: 3px dashed #d6336c;
-      border-radius: 20px;
-      font-family: 'Georgia', serif;
-      color: #4a0033;
-      box-shadow: 0 0 25px rgba(214, 51, 108, 0.2);
-      background-image: url('https://www.transparenttextures.com/patterns/pink-paper.png');
-    }
-
-    #ticket h2 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    #ticket p {
-      margin: 10px 0;
-    }
-
-    #ticket small {
-      display: block;
-      text-align: center;
+    .boton-imprimir {
       margin-top: 20px;
-      font-size: 14px;
+      background-color: #d63384;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .boton-imprimir:hover {
+      background-color: #b52b6f;
     }
   </style>
 </head>
 <body>
 
-<h1>Enviar Carta Personalizada</h1>
-
-<form id="form-personalizada" action="https://formsubmit.co/mitsuhamiyabami@gmail.com" method="POST" enctype="multipart/form-data">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://amreyna.github.io/Cartas-Sofia/grax.html">
-
-  <label>Nombre:</label>
-  <input type="text" name="Nombre" required>
-
-  <label>Correo electrónico:</label>
-  <input type="email" name="Correo" required>
-
-  <label>Mensaje o comentario adicional:</label>
-  <textarea name="Mensaje" rows="4" placeholder="Describe tu idea o inspiración..."></textarea>
-
-  <label>Sube tu diseño (imagen):</label>
-  <input type="file" name="Imagen" accept="image/*" required>
-
-  <button type="submit">Enviar diseño</button>
-</form>
-
-<!-- Ticket de confirmación -->
-<div id="ticket-container">
-  <div id="ticket">
-    <h2>🎨 Ticket de Carta Personalizada</h2>
-    <p><strong>Nombre:</strong> <span id="t-nombre"></span></p>
-    <p><strong>Correo:</strong> <span id="t-correo"></span></p>
-    <p><strong>Comentario:</strong> <span id="t-mensaje"></span></p>
-    <p><strong>📌 Precio:</strong> A convenir según diseño</p>
-    <small>✨ Este ticket confirma tu envío. Nos pondremos en contacto contigo pronto. ✨</small>
+  <div class="ticket" id="ticket">
+    <h2>🎨 Ticket de Diseño Personalizado</h2>
+    <p><strong>Nombre:</strong> Información enviada previamente</p>
+    <p><strong>Correo:</strong> Información enviada previamente</p>
+    <p><strong>Diseño enviado:</strong></p>
+    <p>Imagen cargada correctamente. Será revisada para cotizar el precio.</p>
+    <img src="https://via.placeholder.com/300x200.png?text=Tu+imagen+personalizada" alt="Imagen enviada">
+    <p><strong>Precio:</strong> A convenir según diseño</p>
   </div>
 
-  <button onclick="window.print()">🖨️ Imprimir o Guardar como PDF</button>
-</div>
-
-<script>
-document.getElementById("form-personalizada").addEventListener("submit", function(e) {
-  // Mostrar el ticket
-  e.preventDefault(); // Evita envío automático
-
-  // Obtener datos
-  const nombre = document.querySelector('input[name="Nombre"]').value;
-  const correo = document.querySelector('input[name="Correo"]').value;
-  const mensaje = document.querySelector('textarea[name="Mensaje"]').value;
-
-  document.getElementById("t-nombre").textContent = nombre;
-  document.getElementById("t-correo").textContent = correo;
-  document.getElementById("t-mensaje").textContent = mensaje || "Sin comentarios.";
-
-  // Mostrar ticket
-  document.getElementById("ticket-container").style.display = "block";
-
-  // Opcional: ocultar formulario
-  // document.getElementById("form-personalizada").style.display = "none";
-
-  // Después de breve pausa, enviar el formulario
-  setTimeout(() => {
-    e.target.submit();
-  }, 800);
-});
-</script>
+  <button class="boton-imprimir" onclick="window.print()">🖨️ Imprimir Ticket</button>
 
 </body>
 </html>
