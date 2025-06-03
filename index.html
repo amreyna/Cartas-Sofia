@@ -529,35 +529,30 @@ perfecto para quien ama la belleza cruda de <br>
 }
 </style>
 <script>
-  const formulario = document.getElementById("formulario");
-  const imagenInput = document.getElementById("imagen");
+  document.getElementById("formulario").addEventListener("submit", function (e) {
+    e.preventDefault(); // Evita envío inmediato
 
-  formulario.addEventListener("submit", function (e) {
-    e.preventDefault(); // Detiene el envío hasta que la imagen esté lista
+    const nombre = this.nombre.value;
+    const correo = this.correo.value;
+    const archivo = document.getElementById("imagen").files[0];
 
-    const nombre = formulario.nombre.value;
-    const correo = formulario.correo.value;
-    const archivo = imagenInput.files[0];
-
-    if (!archivo) {
-      alert("Por favor, selecciona una imagen.");
-      return;
-    }
-
+    // Validar tamaño de imagen (ya lo puedes tener, pero lo reforzamos)
     if (archivo.size > 10 * 1024 * 1024) {
-      alert("La imagen supera el límite de 10 MB.");
+      alert("La imagen no puede pesar más de 10 MB.");
       return;
     }
+
+    // Aquí podrías agregar otras validaciones como CAPTCHA si las tienes
 
     // Guardar nombre y correo
     localStorage.setItem("nombre", nombre);
     localStorage.setItem("correo", correo);
 
+    // Convertir imagen a base64
     const lector = new FileReader();
     lector.onload = function () {
-      // Guardar imagen como base64
       localStorage.setItem("imagen", lector.result);
-      formulario.submit(); // Ahora sí enviar el formulario
+      window.location.href = "diseñoper.html"; // Redirigir una vez guardado
     };
     lector.readAsDataURL(archivo);
   });
