@@ -6,7 +6,7 @@
   <style>
     body {
       background-color: #fefefe;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       padding: 20px;
       text-align: center;
     }
@@ -18,12 +18,18 @@
       max-width: 500px;
       margin: 50px auto;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
     }
 
     .ticket h2 {
       margin-top: 0;
       color: #d63384;
+      font-size: 24px;
+    }
+
+    .ticket p {
+      font-size: 16px;
+      color: #333;
     }
 
     .ticket img {
@@ -54,15 +60,26 @@
 
   <div class="ticket" id="ticket">
     <h2>🎨 Ticket de Diseño Personalizado</h2>
-    <p><strong>Nombre:</strong> Información enviada previamente</p>
-    <p><strong>Correo:</strong> Información enviada previamente</p>
+    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+    <p><strong>Correo:</strong> <span id="correo"></span></p>
     <p><strong>Diseño enviado:</strong></p>
-    <p>Imagen cargada correctamente. Será revisada para cotizar el precio.</p>
-    <img src="https://via.placeholder.com/300x200.png?text=Tu+imagen+personalizada" alt="Imagen enviada">
+    <img id="imagen" alt="Imagen enviada">
     <p><strong>Precio:</strong> A convenir según diseño</p>
   </div>
 
   <button class="boton-imprimir" onclick="window.print()">🖨️ Imprimir Ticket</button>
+
+  <script>
+    document.getElementById("nombre").textContent = localStorage.getItem("nombre") || "No disponible";
+    document.getElementById("correo").textContent = localStorage.getItem("correo") || "No disponible";
+
+    const imagenBase64 = localStorage.getItem("imagen");
+    if (imagenBase64) {
+      document.getElementById("imagen").src = imagenBase64;
+    } else {
+      document.getElementById("imagen").alt = "No se pudo cargar la imagen";
+    }
+  </script>
 
 </body>
 </html>
