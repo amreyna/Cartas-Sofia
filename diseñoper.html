@@ -2,87 +2,87 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ticket de Diseño Personalizado</title>
+  <title>Ticket de Diseño</title>
   <style>
     body {
-      background-color: #fefefe;
       font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .ticket-contenido {
+      background: white;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
     }
 
-    .ticket {
-      background-color: #fff0f5;
-      border: 2px dashed #ff69b4;
-      padding: 30px;
-      max-width: 500px;
-      margin: 50px auto;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+    .ticket-contenido h2 {
+      margin-bottom: 20px;
+      color: #4a90e2;
     }
 
-    .ticket h2 {
-      margin-top: 0;
-      color: #d63384;
-      font-size: 24px;
-    }
-
-    .ticket p {
+    .ticket-contenido p {
       font-size: 16px;
-      color: #333;
+      margin: 10px 0;
     }
 
-    .ticket img {
+    .ticket-contenido img {
+      margin-top: 15px;
       max-width: 100%;
       height: auto;
-      margin-top: 15px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: 2px solid #ddd;
     }
 
-    .boton-imprimir {
+    button {
       margin-top: 20px;
-      background-color: #d63384;
+      background-color: #4a90e2;
       color: white;
-      border: none;
       padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
+      border: none;
+      border-radius: 6px;
       font-size: 16px;
+      cursor: pointer;
     }
 
-    .boton-imprimir:hover {
-      background-color: #b52b6f;
+    button:hover {
+      background-color: #357ABD;
     }
   </style>
 </head>
 <body>
 
-  <div class="ticket" id="ticket">
-    <h2>🎨 Ticket de Diseño Personalizado</h2>
-    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-    <p><strong>Correo:</strong> <span id="correo"></span></p>
-    <p><strong>Diseño enviado:</strong></p>
-    <img id="imagen" alt="Imagen enviada">
-    <p><strong>Precio:</strong> A convenir según diseño</p>
-  </div>
+  <div id="ticket"></div>
 
-  <button class="boton-imprimir" onclick="window.print()">🖨️ Imprimir Ticket</button>
-  
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const nombre = localStorage.getItem("nombre");
-    const correo = localStorage.getItem("correo");
-    const imagen = localStorage.getItem("imagen");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const nombre = localStorage.getItem("nombre");
+      const correo = localStorage.getItem("correo");
+      const imagen = localStorage.getItem("imagen");
 
-    if (nombre && correo && imagen) {
-      document.getElementById("nombreTicket").textContent = nombre;
-      document.getElementById("correoTicket").textContent = correo;
-      document.getElementById("imagenTicket").src = imagen;
-    } else {
-      document.getElementById("ticket").innerHTML = "<p>Error: Datos no disponibles.</p>";
-    }
-  });
-</script>
+      if (!nombre || !correo || !imagen) {
+        document.getElementById("ticket").innerHTML = "<p><strong>Datos no disponibles.</strong></p>";
+        return;
+      }
+
+      document.getElementById("ticket").innerHTML = `
+        <div class="ticket-contenido">
+          <h2>🎨 Ticket de Diseño Personalizado</h2>
+          <p><strong>Nombre:</strong> ${nombre}</p>
+          <p><strong>Correo:</strong> ${correo}</p>
+          <p><strong>Imagen enviada:</strong></p>
+          <img src="${imagen}" alt="Imagen enviada">
+          <p><strong>Precio:</strong> A convenir según el diseño.</p>
+          <button onclick="window.print()">🖨️ Imprimir Ticket</button>
+        </div>
+      `;
+    });
+  </script>
+
 </body>
 </html>
