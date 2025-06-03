@@ -1,1 +1,94 @@
-ça serve à rien
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gracias por tu pedido</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 40px;
+      color: #800020;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+
+    .detalle-pedido {
+      background-color: #ffe4ec;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+      list-style-type: "💌 ";
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    .boton-regresar {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: #ff66a3;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .boton-regresar:hover {
+      background-color: #e0558f;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¡Gracias por tu pedido! 🎉</h1>
+  <p>Hemos recibido tu solicitud. Aquí están los detalles:</p>
+
+  <div class="detalle-pedido">
+    <h2>📝 Cartas seleccionadas:</h2>
+    <ul id="lista-cartas"></ul>
+    <p><strong>Total:</strong> <span id="total"></span></p>
+  </div>
+
+  <a href="index.html" class="boton-regresar">⬅️ Regresar al inicio</a>
+
+  <script>
+    // Recuperar datos del localStorage
+    const cartas = JSON.parse(localStorage.getItem("cartas")) || [];
+    const total = localStorage.getItem("total") || "$0";
+
+    const lista = document.getElementById("lista-cartas");
+    const totalSpan = document.getElementById("total");
+
+    if (cartas.length === 0) {
+      lista.innerHTML = "<li>No se encontraron cartas seleccionadas.</li>";
+    } else {
+      cartas.forEach(carta => {
+        const li = document.createElement("li");
+        li.textContent = carta;
+        lista.appendChild(li);
+      });
+    }
+
+    totalSpan.textContent = total;
+  </script>
+
+</body>
+</html>
+
