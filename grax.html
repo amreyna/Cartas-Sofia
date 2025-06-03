@@ -60,34 +60,92 @@
   <h1>¡Gracias por tu pedido! 🎉</h1>
   <p>Hemos recibido tu solicitud. Aquí están los detalles:</p>
 
-  <div class="detalle-pedido">
-    <h2>📝 Cartas seleccionadas:</h2>
-    <ul id="lista-cartas"></ul>
-    <p><strong>Total:</strong> <span id="total"></span></p>
+<div id="ticket-container" style="margin-top: 40px;">
+  <div id="ticket" style="
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    background: #fff0f5;
+    border: 3px dashed #d6336c;
+    border-radius: 20px;
+    font-family: 'Georgia', serif;
+    color: #4a0033;
+    position: relative;
+    box-shadow: 0 0 25px rgba(214, 51, 108, 0.2);
+    background-image: url('https://www.transparenttextures.com/patterns/pink-paper.png');
+  ">
+    <div style="text-align: center;">
+      <h2 style="font-size: 28px; margin-bottom: 10px;">💌 Ticket de Pedido</h2>
+      <p style="font-style: italic; color: #a83a64;">"Gracias por compartir amor con tus palabras..."</p>
+    </div>
+
+    <hr style="border: none; border-top: 1px dashed #d6336c; margin: 20px 0;">
+
+    <p><strong>👤 Nombre del comprador:</strong> <span id="t-nombre"></span></p>
+    <p><strong>🎁 Para:</strong> <span id="t-para"></span></p>
+    <p><strong>💌 Cartas seleccionadas (<span id="t-cantidad"></span>):</strong></p>
+    <ul id="t-cartas" style="padding-left: 20px; list-style-type: '💖 '; line-height: 1.6;"></ul>
+
+    <p style="text-align: right; font-size: 18px; font-weight: bold; margin-top: 20px;">
+      Total a pagar: <span id="t-total"></span>
+    </p>
+
+    <hr style="border: none; border-top: 1px dashed #d6336c; margin: 20px 20px 0 20px;">
+    <p style="text-align: center; font-size: 14px; margin-top: 15px;">
+      ✨ Este ticket es válido como comprobante de amor ✨
+    </p>
   </div>
+
+  <!-- Botón de imprimir -->
+  <button onclick="window.print()" style="
+    margin: 30px auto;
+    display: block;
+    background-color: #d6336c;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  ">🖨️ Imprimir o Guardar como PDF</button>
+</div>
+
 
   <a href="index.html" class="boton-regresar">⬅️ Regresar al inicio</a>
 
-  <script>
-    // Recuperar datos del localStorage
-    const cartas = JSON.parse(localStorage.getItem("cartas")) || [];
-    const total = localStorage.getItem("total") || "$0";
+<script>
+  const cartas = JSON.parse(localStorage.getItem("cartas")) || [];
+  const total = localStorage.getItem("total") || "$0";
+  const nombre = localStorage.getItem("nombre") || "No disponible";
+  const destinatario = localStorage.getItem("destinatario") || "No disponible";
 
-    const lista = document.getElementById("lista-cartas");
-    const totalSpan = document.getElementById("total");
+  document.getElementById("t-nombre").textContent = nombre;
+  document.getElementById("t-para").textContent = destinatario;
 
-    if (cartas.length === 0) {
-      lista.innerHTML = "<li>No se encontraron cartas seleccionadas.</li>";
-    } else {
-      cartas.forEach(carta => {
-        const li = document.createElement("li");
-        li.textContent = carta;
-        lista.appendChild(li);
-      });
-    }
+  const lista = document.getElementById("t-cartas");
+  const cantidad = document.getElementById("t-cantidad");
+  const totalSpan = document.getElementById("t-total");
 
-    totalSpan.textContent = total;
-  </script>
+  if (cartas.length === 0) {
+    lista.innerHTML = "<li>No se encontraron cartas seleccionadas.</li>";
+  } else {
+    cartas.forEach(carta => {
+      const li = document.createElement("li");
+      li.textContent = carta;
+      lista.appendChild(li);
+    });
+  }
+
+  cantidad.textContent = cartas.length;
+  totalSpan.textContent = total;
+
+  // Borra los datos cuando el usuario regresa
+  document.getElementById("btn-regresar").addEventListener("click", function () {
+    localStorage.clear();
+  });
+</script>
+
 
 </body>
 </html>
