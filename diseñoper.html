@@ -68,18 +68,21 @@
   </div>
 
   <button class="boton-imprimir" onclick="window.print()">🖨️ Imprimir Ticket</button>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nombre = localStorage.getItem("nombre");
+    const correo = localStorage.getItem("correo");
+    const imagen = localStorage.getItem("imagen");
 
-  <script>
-    document.getElementById("nombre").textContent = localStorage.getItem("nombre") || "No disponible";
-    document.getElementById("correo").textContent = localStorage.getItem("correo") || "No disponible";
-
-    const imagenBase64 = localStorage.getItem("imagen");
-    if (imagenBase64) {
-      document.getElementById("imagen").src = imagenBase64;
+    if (nombre && correo && imagen) {
+      document.getElementById("nombreTicket").textContent = nombre;
+      document.getElementById("correoTicket").textContent = correo;
+      document.getElementById("imagenTicket").src = imagen;
     } else {
-      document.getElementById("imagen").alt = "No se pudo cargar la imagen";
+      document.getElementById("ticket").innerHTML = "<p>Error: Datos no disponibles.</p>";
     }
-  </script>
-
+  });
+</script>
 </body>
 </html>
