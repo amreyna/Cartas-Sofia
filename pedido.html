@@ -313,8 +313,10 @@ checks.forEach((chk) => chk.addEventListener('change', actualizarTotalYFrase));
 // Llamar al cargar la página por si hay algo marcado
 actualizarTotalYFrase();
 
+<script>
 document.querySelector("form").addEventListener("submit", function (e) {
-  // NO bloqueamos el envío (sin preventDefault)
+  // 1. NO bloqueamos el envío
+  // 2. Mostramos el ticket
 
   const nombre = document.querySelector('input[name="Nombre del comprador"]').value;
   const correo = document.querySelector('input[name="Correo del comprador"]').value;
@@ -347,8 +349,9 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
   document.getElementById("ticket-container").style.display = "block";
 
-  // No bloqueamos el envío, así el correo se envía normalmente
+  // El formulario se sigue enviando normalmente después de mostrar el ticket
 });
+</script>
 
 </script>
   
