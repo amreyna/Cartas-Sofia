@@ -532,21 +532,34 @@ perfecto para quien ama la belleza cruda de <br>
   const formulario = document.getElementById("formulario");
   const imagenInput = document.getElementById("imagen");
 
+  formulario.addEventListener("submit", function (e) {
+    e.preventDefault(); // Detiene el envío hasta que la imagen esté lista
 
-      // Guardar los datos en localStorage para usarlos en diseñoper.html
-      localStorage.setItem("nombre", formulario.nombre.value);
-      localStorage.setItem("correo", formulario.correo.value);
+    const nombre = formulario.nombre.value;
+    const correo = formulario.correo.value;
+    const archivo = imagenInput.files[0];
 
-      // Guardar la imagen como base64
-      const lector = new FileReader();
-      lector.onload = function () {
-        localStorage.setItem("imagen", lector.result);
-        formulario.submit();
-      };
-      lector.readAsDataURL(archivo);
-
-      e.preventDefault(); // prevenir envío inmediato hasta que la imagen se lea
+    if (!archivo) {
+      alert("Por favor, selecciona una imagen.");
+      return;
     }
+
+    if (archivo.size > 10 * 1024 * 1024) {
+      alert("La imagen supera el límite de 10 MB.");
+      return;
+    }
+
+    // Guardar nombre y correo
+    localStorage.setItem("nombre", nombre);
+    localStorage.setItem("correo", correo);
+
+    const lector = new FileReader();
+    lector.onload = function () {
+      // Guardar imagen como base64
+      localStorage.setItem("imagen", lector.result);
+      formulario.submit(); // Ahora sí enviar el formulario
+    };
+    lector.readAsDataURL(archivo);
   });
 </script>
 </body>
