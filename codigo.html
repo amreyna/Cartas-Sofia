@@ -286,6 +286,8 @@
         <a href="#inicio">Inicio</a>
         <a href="#galeria">Galería</a>
         <a href="#contacto">Contacto</a>
+		<a href="pedido.html">Realizar pedido</a>
+		<a href="#formulario-imagen">Enviar diseño</a>
       </nav>
     </div>
   </header>
@@ -438,8 +440,8 @@ perfecto para quien ama la belleza cruda de <br>
  <p><strong>Enviar tu diseño personalizado</strong></p>
  
  <!-- Formulario para enviar imagen -->
- <form id="formulario-imagen" action="https://formsubmit.co/mitsuhamiyabami@gmail.com" method="POST" enctype="multipart/form-data">
- 
+ <form id="formulario-imagen" action="https://formsubmit.co/cafe.des.poets@gmail.com" method="POST" enctype="multipart/form-data">
+ <!--  <form id="formulario-imagen" action="https://formsubmit.co/mitsuhamiyabami@gmail.com" method="POST" enctype="multipart/form-data"> -->
    <!-- Seguridad contra robots -->
    <input type="hidden" name="_captcha" value="false">
  
@@ -529,32 +531,53 @@ perfecto para quien ama la belleza cruda de <br>
 }
 </style>
 <script>
-  document.getElementById("formulario-imagen").addEventListener("submit", function (e) {
-    e.preventDefault(); // Evita envío inmediato
+  document.getElementById('formulario-imagen').addEventListener('submit', function (e) {
+    const archivo = document.getElementById('imagen').files[0];
+    const nombre = document.querySelector('input[name="Nombre"]');
+    const email = document.querySelector('input[name="Email"]');
+    const mensajeError = document.getElementById('error-mensaje');
 
-    const nombre = this.nombre.value;
-    const correo = this.correo.value;
-    const archivo = document.getElementById("imagen").files[0];
+    mensajeError.textContent = ""; // Limpiar mensaje previo
 
-    // Validar tamaño de imagen (ya lo puedes tener, pero lo reforzamos)
-    if (archivo.size > 10 * 1024 * 1024) {
-      alert("La imagen no puede pesar más de 10 MB.");
+    // Validar nombre (no vacío)
+    if (!nombre.value.trim()) {
+      e.preventDefault();
+      mensajeError.textContent = "⚠️ Por favor, escribe tu nombre.";
       return;
     }
 
-    // Aquí podrías agregar otras validaciones como CAPTCHA si las tienes
+    // Validar correo (formato básico)
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailRegex.test(email.value)) {
+      e.preventDefault();
+      mensajeError.textContent = "⚠️ Escribe un correo electrónico válido.";
+      return;
+    }
 
-    // Guardar nombre y correo
-    localStorage.setItem("nombre", nombre);
-    localStorage.setItem("correo", correo);
+    // Validar que se haya seleccionado archivo
+    if (!archivo) {
+      e.preventDefault();
+      mensajeError.textContent = "⚠️ Selecciona una imagen para enviar.";
+      return;
+    }
 
-    // Convertir imagen a base64
-    const lector = new FileReader();
-    lector.onload = function () {
-      localStorage.setItem("imagen", lector.result);
-      window.location.href = "diseñoper.html"; // Redirigir una vez guardado
-    };
-    lector.readAsDataURL(archivo);
+    // Validar tamaño (<10MB)
+    if (archivo.size > 10 * 1024 * 1024) {
+      e.preventDefault();
+      mensajeError.textContent = "⚠️ La imagen no debe superar los 10 MB.";
+      return;
+    }
+
+    // Validar tipo de archivo
+    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!tiposPermitidos.includes(archivo.type)) {
+      e.preventDefault();
+      mensajeError.textContent = "⚠️ Solo se permiten imágenes JPG, PNG o GIF.";
+      return;
+    }
+
+    // Si todo está bien, NO se cancela el envío y el formulario se manda al correo
+    // No se usa preventDefault aquí
   });
 </script>
 </body>
