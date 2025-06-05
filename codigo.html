@@ -5,9 +5,9 @@
   <title>Cartas Hechas a Mano</title>
   <style>
     body {
-      background-color: #800020; /* bordeaux */
+      background: linear-gradient(to right, #ffe0e9, #ffc2d1);
       font-family: 'Arial', sans-serif;
-      color: #fff;
+      color: #4a0033;
       margin: 0;
       padding: 0;
     }
@@ -17,22 +17,25 @@
 
     /* Cabecera completa del sitio */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex; /* usamos flexbox para acomodar los elementos horizontalmente */
-      align-items: flex-start; /* alineamos los elementos al inicio de la parte superior */
-      padding: 20px;
-      background-color: #4b0012;
-      box-shadow: 0 4px 8px rgb(0,0,0,0.3)
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	display: flex; /* usamos flexbox para acomodar los elementos horizontalmente */
+	align-items: flex-start; /* alineamos los elementos al inicio de la parte superior */
+	padding: 20px;
+	background-color: #ff99ac;
+	color: white;
+	box-shadow: 0 4px 8px rgb(0,0,0,0.3)
     }
 
     /* Título principal del sitio */
     .titulo-sitio {
-      margin: 0;
-      font-size: 2.5em;
-      text-align: left;
+	color: #b30059;
+	text-shadow: 1px 1px 2px #fff;
+	margin: 0;
+	font-size: 2.5em;
+	text-align: left;
       /* Ahora está posicionado al inicio por estar dentro de un contenedor con display:flex */
       /* Puedes cambiar text-align a 'center' o 'right' si quieres moverlo horizontalmente */
     }
@@ -67,13 +70,14 @@
     }
 
     .info-box {
-      background-color: #a93242;
-      border-radius: 20px;
-      padding: 10px;
-      width: 90%;
-      margin: 0;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
-      text-align: justify;
+	background-color: #ffe4ec;
+	color: #4a0033;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	border-radius: 20px;
+	padding: 10px;
+	width: 90%;
+	margin: 0;
+	text-align: justify;
     }
 
     .galeria {
@@ -122,14 +126,15 @@
     }
 
     .cliente-box {
-      background-color: #a93242;
-      color: white;
-      border-radius: 15px;
-      padding: 20px;
-      width: 28%;
-      margin: 10px;
-      min-height: 150px;
-      text-align: center;
+	background-color: #ffe4ec;
+	color: #4a0033;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	border-radius: 15px;
+	padding: 20px;
+	width: 28%;
+	margin: 10px;
+	min-height: 150px;
+	text-align: center;
     }
     .testimonios {
  margin-top: 60px;
@@ -250,13 +255,21 @@
  
     input[type="submit"],
     button {
-      transition: transform 0.3s ease, background-color 0.3s ease;
+	  background: linear-gradient(145deg, #ff4d6d, #ff99ac);
+	  color: white;
+	  border: none;
+	  padding: 12px 24px;
+	  border-radius: 30px;
+	  font-size: 1em;
+	  cursor: pointer;
+	  box-shadow: 0 8px 20px rgba(255, 0, 102, 0.3);
+	  transition: all 0.3s ease;
     }
 
     input[type="submit"]:hover,
     button:hover {
-      transform: scale(1.05);
-      background-color: #e0558f; /* color rosado fuerte al pasar el mouse */
+	  transform: translateY(-4px);
+	  box-shadow: 0 12px 24px rgba(255, 0, 102, 0.5);
     }
 
     input[value="Realizar pedidos"] {
