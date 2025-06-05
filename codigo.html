@@ -19,6 +19,7 @@
     header {
 	position: fixed;
 	top: 0;
+	left: 0;
 	width: 100%;
 	z-index: 1000;
 	display: flex; /* usamos flexbox para acomodar los elementos horizontalmente */
@@ -44,8 +45,9 @@
     
         /* Menú de navegación */
     .menu-navegacion {
-      display: flex;
-      gap: 20px; /* espacio entre los enlaces */
+	display: flex;
+	gap: 16px; /* espacio entre los enlaces */
+	flex-wrap: wrap;
     }
     
     .menu-navegacion a {
@@ -117,7 +119,7 @@
     }
 
     .cliente-section {
-      background-color: #4b0012;
+      background-color: #fff0f5;
       padding: 40px 20px;
       margin-top: 40px;
       display: flex;
@@ -139,7 +141,8 @@
     .testimonios {
  margin-top: 60px;
  padding: 40px;
- background-color: #4b0012; /* un tono más oscuro del fondo */
+ background-color: #ffe4ec;
+	    color: #4a0033;
  border-top: 3px solid #ffcccc;
  text-align: center;
 }
@@ -147,7 +150,7 @@
 .testimonios h2 {
  font-size: 2em;
  margin-bottom: 20px;
- color: #ffcccc;
+ color: #d6336c;
 }
  
 /* Estilo de cada testimonio */
@@ -157,7 +160,7 @@
  animation: aparecer 2s ease-in-out forwards infinite; /* animación */
  animation-delay: var(--delay); /* espera diferente para cada frase */
  font-size: 1.2em;
- color: white;
+ color: #b30059;
  margin-bottom: 15px;
 }
  
@@ -178,27 +181,23 @@
 }
 /* Contenedor principal */
 .contenido {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 100px;
+  margin-top: 120px;
 }
 
 .columna-izquierda {
   flex-basis: 35%;
   max-width: 400px;
-  background-color: #66001c;
+  background-color: #ffe4ec;
   padding: 10px;
   box-sizing: border-box;
-  color: white;
+  color: #4a0033;
 }
 
 .columna-derecha {
   flex-grow: 1;
   flex-basis: 65%;
-  background-color: #aa0044;
-  color: white;
+  background-color: #fff8fb;
+  color: #4a0033;
   padding: 20px;
   box-sizing: border-box;
   min-width: 0;
@@ -291,16 +290,16 @@
 
   <header>
     <!-- Contenedor que separa el título del menú -->
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; width: 100%;">
       <!-- Título a la izquierda -->
       <h1 class="titulo-sitio">MOKANI</h1>   
       <!-- Menú a la derecha -->
       <nav class="menu-navegacion">
-        <a href="#inicio">Inicio</a>
-        <a href="#galeria">Galería</a>
-        <a href="#contacto">Contacto</a>
-		<a href="pedido.html">Realizar pedido</a>
-		<a href="#formulario-imagen">Enviar diseño</a>
+	<a href="#inicio">Inicio</a>
+	<a href="#galeria">Galería</a>
+	<a href="#contacto">Contacto</a>
+	<a href="pedido.html">Realizar pedido</a>
+	<a href="#formulario-imagen">Enviar diseño</a>
       </nav>
 	<div class="heart" style="left: 10%; animation-delay: 0s;"></div>
 	<div class="heart" style="left: 25%; animation-delay: 1s;"></div>
