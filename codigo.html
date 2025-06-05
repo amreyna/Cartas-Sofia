@@ -531,54 +531,56 @@ perfecto para quien ama la belleza cruda de <br>
 }
 </style>
 <script>
-  document.getElementById('formulario-imagen').addEventListener('submit', function (e) {
-    const archivo = document.getElementById('imagen').files[0];
-    const nombre = document.querySelector('input[name="Nombre"]');
-    const email = document.querySelector('input[name="Email"]');
-    const mensajeError = document.getElementById('error-mensaje');
+document.getElementById("formulario-imagen").addEventListener("submit", function (e) {
+  const archivo = document.getElementById("imagen").files[0];
+  const nombre = this.querySelector('input[name="Nombre"]').value;
+  const correo = this.querySelector('input[name="Email"]').value;
+  const error = document.getElementById("error-mensaje");
 
-    mensajeError.textContent = ""; // Limpiar mensaje previo
+  error.textContent = "";
 
-    // Validar nombre (no vacío)
-    if (!nombre.value.trim()) {
-      e.preventDefault();
-      mensajeError.textContent = "⚠️ Por favor, escribe tu nombre.";
-      return;
-    }
+  // Validaciones
+  if (!nombre.trim()) {
+    e.preventDefault();
+    error.textContent = "⚠️ Escribe tu nombre.";
+    return;
+  }
 
-    // Validar correo (formato básico)
-    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    if (!emailRegex.test(email.value)) {
-      e.preventDefault();
-      mensajeError.textContent = "⚠️ Escribe un correo electrónico válido.";
-      return;
-    }
+  const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  if (!emailRegex.test(correo)) {
+    e.preventDefault();
+    error.textContent = "⚠️ Correo no válido.";
+    return;
+  }
 
-    // Validar que se haya seleccionado archivo
-    if (!archivo) {
-      e.preventDefault();
-      mensajeError.textContent = "⚠️ Selecciona una imagen para enviar.";
-      return;
-    }
+  if (!archivo) {
+    e.preventDefault();
+    error.textContent = "⚠️ Selecciona una imagen.";
+    return;
+  }
 
-    // Validar tamaño (<10MB)
-    if (archivo.size > 10 * 1024 * 1024) {
-      e.preventDefault();
-      mensajeError.textContent = "⚠️ La imagen no debe superar los 10 MB.";
-      return;
-    }
+  if (archivo.size > 10 * 1024 * 1024) {
+    e.preventDefault();
+    error.textContent = "⚠️ Imagen mayor a 10MB.";
+    return;
+  }
 
-    // Validar tipo de archivo
-    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
-    if (!tiposPermitidos.includes(archivo.type)) {
-      e.preventDefault();
-      mensajeError.textContent = "⚠️ Solo se permiten imágenes JPG, PNG o GIF.";
-      return;
-    }
+  const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
+  if (!tiposPermitidos.includes(archivo.type)) {
+    e.preventDefault();
+    error.textContent = "⚠️ Solo JPG, PNG o GIF.";
+    return;
+  }
 
-    // Si todo está bien, NO se cancela el envío y el formulario se manda al correo
-    // No se usa preventDefault aquí
-  });
+  // Guardar y redirigir después del envío real
+  const lector = new FileReader();
+  lector.onload = function () {
+    localStorage.setItem("nombre", nombre);
+    localStorage.setItem("correo", correo);
+    localStorage.setItem("imagen", lector.result);
+  };
+  lector.readAsDataURL(archivo);
+});
 </script>
 </body>
 </html>
