@@ -98,7 +98,7 @@
   </div>
 
   <!-- Botón de imprimir -->
-  <button onclick="window.print()" style="
+  <button id="btn-pdf" style="
     margin: 30px auto;
     display: block;
     background-color: #d6336c;
@@ -109,56 +109,53 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  ">🖨️ Imprimir o Guardar como PDF</button>
+  "> Guardar como PDF</button>
 </div>
 
 
   <a href="codigo.html" class="boton-regresar">⬅️ Regresar al inicio</a>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-  const cartas = JSON.parse(localStorage.getItem("cartas")) || [];
-  const total = localStorage.getItem("total") || "$0";
-  const nombre = localStorage.getItem("nombre") || "No disponible";
-  const destinatario = localStorage.getItem("destinatario") || "No disponible";
-  // Obtener fecha actual y mostrarla
-  const fechaSpan = document.getElementById("t-fecha");
-  const hoy = new Date();
-  
-  const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-  const fechaFormateada = hoy.toLocaleDateString('es-ES', opciones);
-  
-  fechaSpan.textContent = fechaFormateada;
-  document.getElementById("t-nombre").textContent = nombre;
-  document.getElementById("t-para").textContent = destinatario;
+  document.getElementById("btn-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-  const lista = document.getElementById("t-cartas");
-  const cantidad = document.getElementById("t-cantidad");
-  const totalSpan = document.getElementById("t-total");
+    // Datos del ticket
+    const nombre = localStorage.getItem("nombre") || "No disponible";
+    const correo = localStorage.getItem("correo") || "No disponible";
+    const destinatario = localStorage.getItem("destinatario") || "No disponible";
+    const total = localStorage.getItem("total") || "$0";
+    const cartas = JSON.parse(localStorage.getItem("cartas")) || [];
 
-  if (cartas.length === 0) {
-    lista.innerHTML = "<li>No se encontraron cartas seleccionadas.</li>";
-  } else {
-    cartas.forEach(carta => {
-      const li = document.createElement("li");
-      li.textContent = carta;
-      lista.appendChild(li);
+    const fecha = new Date();
+    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaTexto = fecha.toLocaleDateString('es-ES', opciones);
+
+    // Encabezado
+    doc.setFontSize(16);
+    doc.text("🎀 Confirmación de Pedido - MOKANI", 20, 20);
+
+    doc.setFontSize(12);
+    doc.text(`📅 Fecha: ${fechaTexto}`, 20, 30);
+    doc.text(`👤 Nombre: ${nombre}`, 20, 40);
+    doc.text(`📨 Para: ${destinatario}`, 20, 50);
+    doc.text(`📧 Correo: ${correo}`, 20, 60);
+
+    // Cartas
+    doc.text("📝 Cartas seleccionadas:", 20, 75);
+    cartas.forEach((carta, i) => {
+      doc.text(`• ${carta}`, 25, 85 + i * 10);
     });
-  }
 
-  cantidad.textContent = cartas.length;
-  totalSpan.textContent = total;
+    // Total
+    doc.text(`💰 Total: ${total}`, 20, 95 + cartas.length * 10);
 
-  // Borra los datos cuando el usuario regresa
-  document.getElementById("btn-regresar").addEventListener("click", function () {
-    localStorage.clear();
-  });
-  // También limpiar localStorage al cerrar o recargar la página
-  window.addEventListener("beforeunload", function () {
-    localStorage.clear();
+    // Guardar
+    doc.save("Pedido_MOKANI.pdf");
   });
 </script>
-
-
 </body>
 </html>
 
