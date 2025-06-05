@@ -302,6 +302,11 @@
 		<a href="pedido.html">Realizar pedido</a>
 		<a href="#formulario-imagen">Enviar diseño</a>
       </nav>
+	<div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+	<div class="heart" style="left: 25%; animation-delay: 1s;"></div>
+	<div class="heart" style="left: 40%; animation-delay: 2.5s;"></div>
+	<div class="heart" style="left: 60%; animation-delay: 1.2s;"></div>
+	<div class="heart" style="left: 80%; animation-delay: 3.2s;"></div>
     </div>
   </header>
 
@@ -542,7 +547,65 @@ perfecto para quien ama la belleza cruda de <br>
   background-color: #e0558f;
   transform: scale(1.05);
 }
+
+/* Contenedor del header con corazones flotantes */
+header {
+  position: relative; /* importante para que los corazones se ubiquen dentro */
+  overflow: hidden;
+}
+
+/* Corazón animado */
+.heart {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 94, 120, 0.3);
+  transform: rotate(45deg);
+  animation: float 6s infinite ease-in;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 94, 120, 0.3);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -7px;
+  left: 0;
+}
+
+.heart::after {
+  left: -7px;
+  top: 0;
+}
+
+/* Animación suave hacia arriba */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) rotate(45deg);
+    opacity: 0;
+  }
+}
+	
 </style>
+
+
+
+	
 <script>
 document.getElementById("formulario-imagen").addEventListener("submit", function (e) {
   const archivo = document.getElementById("imagen").files[0];
