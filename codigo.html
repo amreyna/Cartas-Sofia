@@ -294,32 +294,52 @@
       50% {transform: scale(1.05);
           }
     }
-    
+
+
+	.contenedor-header {
+		display: flex;
+		justify-content: flex-start;  /* 👈 empuja todo a la izquierda */
+		align-items: center;
+		gap: 20px;
+		padding: 0 20px;
+		flex-wrap: wrap; /* permite que el menú baje en pantallas pequeñas */
+		box-sizing: border-box;
+		width: 100%;
+	}
+	
+	.menu-navegacion {
+		display: flex;
+		gap: 15px;
+		flex-wrap: wrap;
+	}
+	  
   </style>
 </head>
 <body>
 
 
-  <header>
-    <!-- Contenedor que separa el título del menú -->
-    <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; width: 100%;">
-      <!-- Título a la izquierda -->
-      <h1 class="titulo-sitio">MOKANI</h1>   
-      <!-- Menú a la derecha -->
-      <nav class="menu-navegacion">
-	<a href="#inicio">Inicio</a>
-	<a href="#galeria">Galería</a>
-	<a href="#contacto">Contacto</a>
-	<a href="pedido.html">Realizar pedido</a>
-	<a href="#formulario-imagen">Enviar diseño</a>
-      </nav>
-	<div class="heart" style="left: 10%; animation-delay: 0s;"></div>
-	<div class="heart" style="left: 25%; animation-delay: 1s;"></div>
-	<div class="heart" style="left: 40%; animation-delay: 2.5s;"></div>
-	<div class="heart" style="left: 60%; animation-delay: 1.2s;"></div>
-	<div class="heart" style="left: 80%; animation-delay: 3.2s;"></div>
-    </div>
-  </header>
+<header>
+  <div class="contenedor-header">
+    <!-- Título a la izquierda -->
+    <h1 class="titulo-sitio">MOKANI</h1>   
+
+    <!-- Menú alineado junto al título -->
+    <nav class="menu-navegacion">
+      <a href="#inicio">Inicio</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+      <a href="pedido.html">Realizar pedido</a>
+      <a href="#formulario-imagen">Enviar diseño</a>
+    </nav>
+
+    <!-- Corazones flotantes -->
+    <div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 25%; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 40%; animation-delay: 2.5s;"></div>
+    <div class="heart" style="left: 60%; animation-delay: 1.2s;"></div>
+    <div class="heart" style="left: 80%; animation-delay: 3.2s;"></div>
+  </div>
+</header>
 
   <!-- Contenedor de dos columnas: izquierda para contenido extra, derecha para todo lo demás -->
   <div class="contenido">
